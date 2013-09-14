@@ -257,8 +257,6 @@ let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
 " }}}
 
-
-
 " VCSCommand {{{
 let g:VCSCommandMenuRoot = 'VCS'
 augroup VCSCommand
@@ -300,6 +298,10 @@ let delimitMate_expand_cr      = 1
 let delimitMate_jump_expansion = 1
 "autocmd filetype html let b:loaded_delimitMate=0
 
+" }}}
+
+" vim-markdown {{{
+let g:vim_markdown_folding_disabled=1
 " }}}
 
 " vim:foldmethod=marker
