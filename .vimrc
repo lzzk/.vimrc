@@ -309,4 +309,9 @@ autocmd BufNewFile,BufRead *.markdown,*.textile setfiletype octopress.mkd
 let g:vim_markdown_folding_disabled=1
 " }}}
 
+" ctrlp {{{
+let g:ctrlp_working_path_mode = 'ra'
+" }}}
+
+
 " vim:foldmethod=marker
