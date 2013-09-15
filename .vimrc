@@ -115,7 +115,7 @@ command Cd2cf lcd %:p:h
   NeoBundle 'https://github.com/wookiehangover/jshint.vim.git'
   NeoBundle 'https://github.com/sukima/xmledit.git'
   NeoBundle 'https://github.com/vim-scripts/doxygen-support.vim.git'
-  NeoBundle 'https://github.com/plasticboy/vim-markdown.git'
+  NeoBundle 'https://github.com/tangledhelix/vim-octopress.git'
 
   " Installation check.
   NeoBundleCheck
