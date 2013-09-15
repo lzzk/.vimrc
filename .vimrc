@@ -115,6 +115,7 @@ command Cd2cf lcd %:p:h
   NeoBundle 'https://github.com/wookiehangover/jshint.vim.git'
   NeoBundle 'https://github.com/sukima/xmledit.git'
   NeoBundle 'https://github.com/vim-scripts/doxygen-support.vim.git'
+  NeoBundle 'https://github.com/plasticboy/vim-markdown.git'
   NeoBundle 'https://github.com/tangledhelix/vim-octopress.git'
 
   " Installation check.
@@ -300,7 +301,11 @@ let delimitMate_jump_expansion = 1
 
 " }}}
 
-" vim-markdown {{{
+" vim-octopress {{{
+autocmd BufNewFile,BufRead *.markdown,*.textile setfiletype octopress.mkd
+" }}}
+
+" vim-octopress {{{
 let g:vim_markdown_folding_disabled=1
 " }}}
 
