@@ -1,317 +1,201 @@
-set tabstop=4
-set expandtab
-set softtabstop=4
-set shiftwidth=4
-set incsearch
-set hlsearch		"高亮显示搜索的关键字"
-set smartindent
-set cindent
-set nu
-set foldcolumn=2
-set textwidth=80
-set colorcolumn=80
-set laststatus=2
-set nocompatible
-set showcmd
-"let mapleader=","
-
-
-
-" **************  fix backspace key **************** "
-set backspace=2               " fix backspace key
-set ruler                     " show line and column position of current cusor
-
-" **************
-
-let g:vimball_home='~/.vim'
-
-
-"au BufNewFile,BufRead *.vimprj set ft=vim
-au BufNewFile,BufRead *
-\ if expand('%:e') =~ '^\(h\|hh\|hxx\|hpp\|ii\|ixx\|ipp\|inl\|txx\|tpp\|tpl\|cc\|cxx\|cpp\)$' |
-\   if &ft != 'cpp'                                                                           |
-\     set ft=cpp                                                                              |
-\   endif                                                                                     |
-\ endif                                                                                       |
-
-
-" key mapping {{{
-
-imap <C-BS> <C-W>
-imap <C-CR> <CR><Up>
-imap <S-Del> <Esc>ddi	" delete a line in insert mode with Shift + Enter
-inoremap <C-O> <C-O>:
-
-" }}}
-" ----------------- user define command ---------------- "
-
-" change current directory to the path of current editing file
-command Cd2cf lcd %:p:h
-
-
-" >> ----------------- user define command ---------------- "
-
-
-" neobundle {{{
-  set nocompatible               " Be iMproved
-
-  if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-  endif
-
-  call neobundle#rc(expand('~/.vim/bundle'))
-  " Let NeoBundle manage NeoBundle
-  NeoBundleFetch 'Shougo/neobundle.vim'
-
-  set rtp+=~/.vim/bundle/bufexplorer/
-  set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/
-  "set rtp+=~/.vim/byhand/autolign/
-  set rtp+=~/.vim/byhand/align/
-  "set rtp+=~/llvm/llvm-3.3.src/tools/lldb/utils/vim-lldb/
-  "set rtp+=~/.vim/byhand/vim-lldb/
-  "set rtp+=~/clang_complete/
-
-  NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
-  NeoBundle 'git://github.com/xinsuiyuer/rainbow.git'
-  NeoBundle 'git://github.com/SirVer/ultisnips.git'
-  "NeoBundle 'git://github.com/Rip-Rip/clang_complete.git'
-  NeoBundle 'git://github.com/majutsushi/tagbar.git'
-  "NeoBundle 'https://github.com/oblitum/Cpp11-Syntax-Support'
-  NeoBundle 'git://github.com/scrooloose/nerdtree.git'
-  NeoBundle 'git://github.com/wesleyche/SrcExpl.git'
-  NeoBundle 'git://github.com/Valloric/YouCompleteMe.git'
-
-  "NeoBundle 'git://github.com/vim-scripts/Decho.git'
-  NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-  NeoBundle 'git://github.com/scrooloose/syntastic.git'
-  NeoBundle 'git://repo.or.cz/vcscommand'
-  NeoBundle 'git://github.com/airblade/vim-gitgutter.git'
-  NeoBundle 'git://github.com/Shougo/vimshell.git'
-  NeoBundle 'git://github.com/Shougo/vimproc.git', {
-        \     'build' : {
-        \     'unix' : 'make -f make_unix.mak'
-        \   }
-        \ }
-  "NeoBundle 'http://hg.dfrank.ru/vim/bundle/dfrank_util'
-  "NeoBundle 'http://hg.dfrank.ru/vim/bundle/vimprj'
-  NeoBundle 'git://github.com/scrooloose/nerdcommenter.git'
-  "NeoBundle 'git://github.com/thinca/vim-quickrun.git'
-  NeoBundle 'git://github.com/tpope/vim-fugitive.git'
-  NeoBundle 'git://github.com/Lokaltog/powerline.git'
-  NeoBundle 'https://github.com/kien/ctrlp.vim.git'
-  NeoBundle 'git://github.com/jansenm/vim-cmake.git'
-  NeoBundle 'git://github.com/Shougo/unite.vim.git'
-  NeoBundle 'git://github.com/pangloss/vim-javascript.git'
-  NeoBundle 'git://github.com/jelera/vim-javascript-syntax.git'
-  NeoBundle 'https://github.com/guileen/vim-node.git'
-  NeoBundle 'git://github.com/vim-scripts/Super-Shell-Indent.git'
-  "NeoBundle 'git://github.com/vim-scripts/doxygen-support.vim.git'
-  NeoBundle 'git://github.com/vim-scripts/a.vim.git'
-  NeoBundle 'git://github.com/jansenm/vim-cmake.git'
-  NeoBundle 'git://github.com/Raimondi/delimitMate.git'
-
-  NeoBundle 'https://github.com/chris-ritsen/vim-html-indent.git'
-  NeoBundle 'https://github.com/mattn/zencoding-vim.git'
-  NeoBundle 'https://github.com/wookiehangover/jshint.vim.git'
-  NeoBundle 'https://github.com/sukima/xmledit.git'
-  NeoBundle 'https://github.com/vim-scripts/doxygen-support.vim.git'
-  NeoBundle 'https://github.com/plasticboy/vim-markdown.git'
-  NeoBundle 'https://github.com/tangledhelix/vim-octopress.git'
-
-  " Installation check.
-  NeoBundleCheck
-
-" }}}
 "
-filetype plugin indent on     " required!
-"set rtp+=~/.vim/vim-lldb/
-
-
-" Powerline {{{
-
-let Powerline_symbols = 'compatible'
-let g:Powerline_symbols = 'fancy'
-
-" }}}
-
-
-" doxgen {{{
-let g:DoxygenToolkit_paramTag_post = " "
-let g:load_doxygen_syntax = 1
-"let g:syntax_extra_c = 'doxygen'
-"let g:syntax_extra_cpp = 'doxygen'
-
-"let g:Doxy_LocalTemplateFile = "~/.vim/bundle/doxygen-support.vim/doxygen-support/templates/doxygen.templates"
-
-" }}}
-
-set concealcursor=inv
-set conceallevel=2
-
-" YouCompleteMe {{{
-
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_complete_in_comments_and_strings = 1
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_key_list_select_completion = ['<C-N>', '<Down>']
-let g:ycm_key_invoke_completion = '<C-J>'
-let g:ycm_filetype_specific_completion_to_diable = { 'cpp' : 1 }
-let g:ycm_filetype_whitelist = { 'cpp' : 1, 'c' : 1 }
-let g:ycm_filetype_blacklist = { 
-            \'vim' : 1, 
-            \'vimshell' : 1, 
-            \'snippets' : 1,
-            \'cmake' : 1,
-            \'html' : 1
-            \}
-
-" }}}
-
-" syntastic {{{
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_enable_highlighting = 1
-let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
-
-
-" }}}
-
-
-set completeopt=menuone,longest
-set pumheight=15
-
-
-" Solarized Colorscheme Config {{{
-let g:solarized_termtrans=1    "default value is 0
-let g:solarized_hitrail=1    "default value is 0
+" 修改leader键
+let mapleader = ','
+let g:mapleader = ','
+"语法高亮
 syntax enable
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
-" }}}
+syntax on
+
+" 非兼容vi模式。去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
+set nocompatible
+
+" 历史记录数
+set history=1000
+"检测文件类型
+filetype on
+"针对不同的文件类型采用不同的缩进格式
+filetype indent on
+"允许插件
+filetype plugin on
+"启动自动补全
+filetype plugin indent on
 
 
-" gitgutter {{{
-"let g:gitgutter_highlight_lines = 1
-" }}}
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 显示相关
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set shortmess=atI " 启动的时候不显示那个援助乌干达儿童的提示"
+set autoread          " 文件修改之后自动载入。
+"set go= " 不要图形按钮
+"color asmanian2 " 设置背景主题
+"set guifont=Consolas:h12 " 设置字体
+"set t_Co=256                 "设置256色显示
+autocmd InsertLeave * se nocul " 用浅色高亮当前行
+autocmd InsertEnter * se cul " 用浅色高亮当前行
+set ruler " 显示标尺
+set showcmd " 输入的命令显示出来，看的清楚些
+set scrolloff=3 " 光标移动到buffer的顶部和底部时保持3行距离
+"状态行显示的内容
+set statusline=[%n]%<%f%y%h%m%r%=\ [%l,\ %c]\ of\ %L,%V\ Page\ %N\ %P
+set foldmethod=manual " 手动折叠
+set nocompatible "去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
+" 显示中文帮助
+if version >= 603
+set helplang=cn
+set encoding=utf-8
+endif
+"处理未保存的或只读文件时，弹出确认
+set confirm
+"共享外部剪贴板
+set clipboard+=unnamed
+"- 则点击光标不会换,用于复制
+set mouse-=a             " 鼠标暂不启用, 键盘党....
+" set mouse=a                 " Automatically enable mouse usage
+" set mousehide               " Hide the mouse cursor while typing
+" color scheme颜色主题
+""if has("gui_running")
+""  colorscheme mydesert
+""endif " has "
+" 自动缩进
+set autoindent
+set cindent
+set smartindent
+"退格键"
+set backspace=indent,eol,start
+
+" Tab键的宽度
+set tabstop=2
+" 统一缩进为4
+set softtabstop=2
+set shiftwidth=2
+" 不要用空格代替制表符
+set noexpandtab
+" 在行和段开始处使用制表符
+set smarttab
+" 显示行号
+set number
+"自动换行
+set wrap
+
+"搜索逐字符高亮
+set hlsearch
+set incsearch
+"语言设置
+set langmenu=zh_CN.UTF-8
+let $LANG='zh_CN.UTF-8'
+" 总是显示状态行
+set cmdheight=2
+" 保存全局变量
+set viminfo+=!
+"不生成swap文件
+setlocal noswapfile
+" 带有如下符号的单词不要被换行分割
+set iskeyword+=_,$,@,%,#,-
+"设置大小写敏感和聪明感知(小写全搜，大写完全匹配)
+set ignorecase
+set smartcase
+"让退格，空格，上下箭头遇到行首行尾时自动移到下一行（包括insert模式）
+set whichwrap=b,s,<,>,[,]
+"allow to paste
+"set paste
+
+" 插入模式下使用 ctrl + h/j/k/l 移动光标
+imap <c-k> <Up>
+imap <c-j> <Down>
+imap <c-h> <Left>
+imap <c-l> <Right>
+
+source ~/.vimrc.bundles
+
+" 主要按键重定义
+
+" 关闭方向键, 强迫自己用 hjkl
+map <Left> <Nop>
+map <Right> <Nop>
+map <Up> <Nop>
+map <Down> <Nop>
+
+"==========================================
+" FileEncode Settings 文件编码,格式
+"==========================================
+" 设置新文件的编码为 UTF-8
+set encoding=utf-8
+" 自动判断编码时，依次尝试以下编码：
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set helplang=cn
+"set langmenu=zh_CN.UTF-8
+"set enc=2byte-gb18030
+" 下面这句只影响普通模式 (非图形界面) 下的 Vim。
+set termencoding=utf-8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+" 如遇Unicode值大于255的文本，不必等到空格再折行。
+set formatoptions+=m
+" 合并两行中文时，不在中间加空格：
+set formatoptions+=B
+
+" file header
+autocmd BufNewFile *.py,*.h,*.hpp,*.cc,*.c,*.cxx,*.cpp,*.sh,*.java exec ":call SetTitle()"
+func SetTitle()
+  "如果文件类型为.sh文件
+  if &filetype == 'sh'
+    call setline(1,"\#!/bin/bash")
+    call append(line("."), "# Author:zhq")
+    call append(line(".")+1, "# Version:0.1")
+    "call append(line(".")+2, "# Site:www.t4x.org")
+    call append(line(".")+2, "# Contact:hengqingzhang@gmail.com")
+    call append(line(".")+3, "")
+  elseif &filetype == 'cpp' || 'c'
+    call setline(1,"// File Name: ".expand("%"))
+    call append(line("."), "// Author: zhq")
+    call append(line(".")+1, "// Contact:hengqingzhang@gmail.com")
+    call append(line(".")+2, "// Created Time: ".strftime("%c"))
+    call append(line(".")+3, "")
+    "call append(line(".")+3, "#include<iostream>")
+    "call append(line(".")+4, "#include<string>")
+    "call append(line(".")+5, "#include<algorithm>")
+    "call append(line(".")+6, "#include<cstdlib>")
+    "call append(line(".")+7, "using namespace std;")
+    "call append(line(".")+8, "int main(){")
+    "call append(line(".")+9, "")
+    "call append(line(".")+10, "    return 0")
+    "call append(line(".")+11,"}")
+  elseif &filetype == 'python'
+    call setline(1,"\#!/usr/bin/env python")
+    call append(line("."), "# -*- coding:utf-8 -*-")
+    call append(line(".")+1, "")
+    call append(line(".")+2, "# Author: zhq")
+    call append(line(".")+3, "# Created Time: ".strftime("%c"))
+    call append(line(".")+4, "# Contact:hengqingzhang@gmail.com")
+    call append(line(".")+5, "")
+  else
+    call setline(1,"/*")
+    call append(line("."), "* Author: zhq")
+    call append(line(".")+1, "* Created Time: ".strftime("%c"))
+    call append(line(".")+2, "*/")
+    call append(line(".")+3, "")
+  endif
+endfunc
+"新建文件后，自动定位到文件末尾
+    autocmd BufNewFile * normal G
+    "ts是tabstop的缩写，设TAB宽4个空格
+set ts=4
+set expandtab
+
+"##################TMUX################
+if exists('$TMUX')
+set term=screen-256color
+endif
 
 
-" tagbar {{{
-let g:tagbar_left = 1
-let g:tagbar_singleclick = 1
-let g:tagbar_autoshowtag = 1
-let g:tagbar_show_visibility = 1
-let g:tagbar_ctags_bin="/usr/local/bin/ctags"
-" }}}
-
-" NERDTree {{{
-let g:NERDTreeWinPos = 'right'
-" }}}
-
-" source explorer {{{
-let g:SrcExpl_winHeight = 8
-let g:SrcExpl_refreshTime = 300
-" // Set "Enter" key to jump into the exact definition context
-" let g:SrcExpl_jumpKey = "<ENTER>"
-
-" // Set "Space" key for back from the definition context
-" let g:SrcExpl_gobackKey = "<SPACE>"
-
-let g:SrcExpl_pluginList = [
-        \ "__Tag_List__",
-        \ "_NERD_tree_",
-        \ "Source_Explorer"
-    \ ]
-
-let g:SrcExpl_searchLocalDef = 1
-let g:SrcExpl_isUpdateTags = 0
-let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
-"let g:SrcExpl_updateTagsKey = "<F12>"
-
-" }}}
-
-" Configure like an IDE {{{
-
-" " Open and close the srcexpl.vim separately
-autocmd FileType c,cpp,cmake nmap <Leader>src :SrcExplToggle<CR>
-
-" " Open and close the taglist.vim separately
-autocmd FileType c,cpp,cmake nmap <Leader>tag :TagbarToggle<CR>
-
-" " Open and close the NERD_tree.vim separately
-"autocmd FileType c,cpp,cmake nmap <Leader>nt  :NERDTreeToggle<CR>
-nmap <Leader>nt  :NERDTreeToggle<CR>
-
-" }}}
-
-" rainbow {{{
-let g:rainbow_operators = 2
-au FileType c,cpp,objc,objcpp call rainbow#activate()
-au FileType c,cpp,objc,objcpp RainbowLoad
-" }}}
-
-" ultisnipptes {{{
-let g:UltiSnipsExpandTrigger="<TAB>"
-let g:UltiSnipsJumpForwardTrigger="<TAB>"
-let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
-let g:UltiSnipsRemoveSelectModeMappings = 0
-" }}}
-
-" VCSCommand {{{
-let g:VCSCommandMenuRoot = 'VCS'
-augroup VCSCommand
-  au User VCSBufferCreated silent! nmap <unique> <silent> <buffer> q :bwipeout<cr>
-augroup END
-
-
-" }}}
-
-" neocomplcache {{{
-
-
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_min_syntax_length = 2
-let g:neocomplcache_min_keyword_length = 2
-let g:neocomplcache_auto_completion_start_length = 1
-let g:neocomplcache_enable_auto_select = 0
-let g:neocomplcache_enable_cursor_hold_i = 0
-let g:neocomplcache_enable_fuzzy_completion = 1
-"let g:neocomplcache_fuzzy_completion_start_length = 2
-
-autocmd filetype vim,vimshell,sh,snippets,cmake,html :NeoComplCacheEnable
-autocmd filetype javascript set dictionary+=~/.vim/bundle/vim-node/dict/node.dict | :NeoComplCacheEnable
-autocmd filetype make :NeoComplCacheEnable | set noexpandtab | set tabstop& | set shiftwidth& | set softtabstop&
-
-" }}}
-
-" vimshell {{{
-let g:vimshell_user_promt = 'getcwd()'
-
-
-" }}}
-
-
-" delimitMate {{{
-
-let delimitMate_expand_cr      = 1
-let delimitMate_jump_expansion = 1
-"autocmd filetype html let b:loaded_delimitMate=0
-
-" }}}
-
-" vim-octopress {{{
-autocmd BufNewFile,BufRead *.markdown,*.textile setfiletype octopress.mkd
-" }}}
-
-" vim-octopress {{{
-let g:vim_markdown_folding_disabled=1
-" }}}
-
-" ctrlp {{{
-let g:ctrlp_working_path_mode = 'ra'
-" }}}
-
-
-" vim:foldmethod=marker
+if exists('$ITERM_PROFILE')
+  if exists('$TMUX')
+    let &t_SI = "\<Esc>[3 q"
+    let &t_EI = "\<Esc>[0 q"
+  else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  endif
+end
